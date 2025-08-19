@@ -1,3 +1,37 @@
 {
-  "recommendations": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"]
+  "recommendations": [
+    // Code Quality & Formatting
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+
+    // TypeScript & JavaScript
+    "bradlc.vscode-tailwindcss",
+    "ms-vscode.vscode-typescript-next",
+
+    // Database & API
+    "ms-vscode.vscode-json",
+    "rangav.vscode-thunder-client",
+    "bradlc.vscode-tailwindcss",
+
+    // Git & Version Control
+    "eamodio.gitlens",
+
+    // Monorepo & Workspace
+    "ms-vscode.vscode-json",
+    "redhat.vscode-yaml",
+
+    // Development Tools
+    "usernamehw.errorlens",
+    "christian-kohler.path-intellisense",
+    "ms-vscode.vscode-json",
+
+    // Next.js & React (for CMS package)
+    "bradlc.vscode-tailwindcss",
+    "ms-vscode.vscode-typescript-next",
+
+    // Hono & API Development
+    "ms-vscode.vscode-json",
+    "humao.rest-client"
+  ],
+  "unwantedRecommendations": ["ms-vscode.vscode-typescript"]
 }
