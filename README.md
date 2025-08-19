@@ -1,67 +1,123 @@
-# Payload Blank Template
+# Hono + PayloadCMS Monorepo
 
-This template comes configured with the bare minimum to get started on anything you need.
+现代化的全栈应用架构，采用 Monorepo 设计，清晰分离关注点。
 
-## Quick start
+## 🏗️ 架构概述
 
-This template can be deployed directly from our Cloud hosting and it will setup MongoDB and cloud S3 object storage for media.
+- **@hono-payload/db** - 数据库schema、连接和类型定义
+- **@hono-payload/api** - Hono API服务器，轻量级高性能
+- **@hono-payload/cms** - PayloadCMS后台管理系统
 
-## Quick Start - local setup
+## 📁 项目结构
 
-To spin up this template locally, follow these steps:
+```
+packages/
+├── db/         # 数据库包：schema、连接和类型
+├── api/        # Hono API服务器
+└── cms/        # PayloadCMS后台管理
+```
 
-### Clone
+## 🚀 快速开始
 
-After you click the `Deploy` button above, you'll want to have standalone copy of this repo on your machine. If you've already cloned this repo, skip to [Development](#development).
+### 1. 安装依赖
 
-### Development
+```bash
+pnpm install
+```
 
-1. First [clone the repo](#clone) if you have not done so already
-2. `cd my-project && cp .env.example .env` to copy the example environment variables. You'll need to add the `MONGODB_URI` from your Cloud project to your `.env` if you want to use S3 storage and the MongoDB database that was created for you.
+### 2. 环境配置
 
-3. `pnpm install && pnpm dev` to install dependencies and start the dev server
-4. open `http://localhost:3000` to open the app in your browser
+复制环境变量文件并配置数据库：
 
-That's it! Changes made in `./src` will be reflected in your app. Follow the on-screen instructions to login and create your first admin user. Then check out [Production](#production) once you're ready to build and serve your app, and [Deployment](#deployment) when you're ready to go live.
+```bash
+cp .env.example .env
+```
 
-#### Docker (Optional)
+设置你的数据库连接：
 
-If you prefer to use Docker for local development instead of a local MongoDB instance, the provided docker-compose.yml file can be used.
+```env
+DATABASE_URI=postgresql://username:password@localhost:5432/dbname
+PAYLOAD_SECRET=your-secret-key
+```
 
-To do so, follow these steps:
+### 3. 初始化数据库
 
-- Modify the `MONGODB_URI` in your `.env` file to `mongodb://127.0.0.1/<dbname>`
-- Modify the `docker-compose.yml` file's `MONGODB_URI` to match the above `<dbname>`
-- Run `docker-compose up` to start the database, optionally pass `-d` to run in the background.
+```bash
+# 构建数据库包（必须先做）
+pnpm build:db
 
-## How it works
+# 生成并推送数据库schema
+pnpm db:generate
+pnpm db:push
+```
 
-The Payload config is tailored specifically to the needs of most websites. It is pre-configured in the following ways:
+### 4. 启动开发环境
 
-### Collections
+**方式1: 全部启动（推荐）**
+```bash
+pnpm dev
+```
 
-See the [Collections](https://payloadcms.com/docs/configuration/collections) docs for details on how to extend this functionality.
+**方式2: 单独启动**
+```bash
+# PayloadCMS后台 (http://localhost:3000)
+pnpm dev:cms
 
-- #### Users (Authentication)
+# Hono API服务器 (http://localhost:4000)
+pnpm dev:api
+```
 
-  Users are auth-enabled collections that have access to the admin panel.
+## 📝 可用命令
 
-  For additional help, see the official [Auth Example](https://github.com/payloadcms/payload/tree/main/examples/auth) or the [Authentication](https://payloadcms.com/docs/authentication/overview#authentication-overview) docs.
+### 构建
+```bash
+pnpm build          # 构建所有包
+pnpm build:db       # 构建数据库包
+pnpm build:api      # 构建API服务器
+pnpm build:cms      # 构建CMS后台
+```
 
-- #### Media
+### 开发
+```bash
+pnpm dev           # 启动所有包的开发模式
+pnpm dev:db        # 启动db包的类型监听
+pnpm dev:api       # 启动API服务器
+pnpm dev:cms       # 启动CMS后台
+```
 
-  This is the uploads enabled collection. It features pre-configured sizes, focal point and manual resizing to help you manage your pictures.
+### 数据库
+```bash
+pnpm db:generate   # 生成迁移文件
+pnpm db:migrate    # 执行迁移
+pnpm db:push       # 推送schema到数据库
+pnpm db:studio     # 启动Drizzle Studio
+```
 
-### Docker
+### 工具
+```bash
+pnpm clean         # 清理所有构建产物
+pnpm lint          # 代码检查
+```
 
-Alternatively, you can use [Docker](https://www.docker.com) to spin up this template locally. To do so, follow these steps:
+## 🌟 架构特点
 
-1. Follow [steps 1 and 2 from above](#development), the docker-compose file will automatically use the `.env` file in your project root
-1. Next run `docker-compose up`
-1. Follow [steps 4 and 5 from above](#development) to login and create your first admin user
+- **类型安全**: 端到端TypeScript类型安全
+- **清晰分离**: 每个包都有明确的职责范围
+- **高性能**: Hono轻量级 + Drizzle零运行时开销
+- **易维护**: 模块化设计，高内聚低耦合
+- **可扩展**: 可独立部署和扩展各个服务
 
-That's it! The Docker instance will help you get up and running quickly while also standardizing the development environment across your teams.
+## 📖 详细文档
 
-## Questions
+查看 [ARCHITECTURE.md](./ARCHITECTURE.md) 获取详细的架构说明和开发指南。
 
-If you have any issues or questions, reach out to us on [Discord](https://discord.com/invite/payload) or start a [GitHub discussion](https://github.com/payloadcms/payload/discussions).
+## 🛠️ 技术栈
+
+- **API**: Hono + Drizzle ORM + PostgreSQL
+- **CMS**: PayloadCMS + Next.js
+- **类型**: TypeScript + 共享类型定义
+- **工具**: pnpm workspace + Monorepo
+
+## 🤝 贡献
+
+欢迎提交 Issue 和 Pull Request！

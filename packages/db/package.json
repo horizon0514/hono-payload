@@ -1,0 +1,39 @@
+{
+  "name": "@hono-payload/db",
+  "version": "1.0.0",
+  "description": "Database schemas, connections and types",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./db": {
+      "types": "./dist/db/index.d.ts",
+      "import": "./dist/db/index.js"
+    },
+    "./types": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/types/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.36.1",
+    "postgres": "^3.4.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.4",
+    "drizzle-kit": "^0.28.1",
+    "typescript": "5.7.3"
+  }
+}
