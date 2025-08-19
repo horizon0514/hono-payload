@@ -63,11 +63,14 @@ export type SupportedTimezones =
 
 export interface Config {
   auth: {
-    users: UserAuthOperations;
+    'admin-users': AdminUserAuthOperations;
   };
   blocks: {};
   collections: {
+    'admin-users': AdminUser;
     users: User;
+    posts: Post;
+    categories: Category;
     media: Media;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -75,27 +78,30 @@ export interface Config {
   };
   collectionsJoins: {};
   collectionsSelect: {
+    'admin-users': AdminUsersSelect<false> | AdminUsersSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
+    posts: PostsSelect<false> | PostsSelect<true>;
+    categories: CategoriesSelect<false> | CategoriesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
   db: {
-    defaultIDType: string;
+    defaultIDType: number;
   };
   globals: {};
   globalsSelect: {};
   locale: null;
-  user: User & {
-    collection: 'users';
+  user: AdminUser & {
+    collection: 'admin-users';
   };
   jobs: {
     tasks: unknown;
     workflows: unknown;
   };
 }
-export interface UserAuthOperations {
+export interface AdminUserAuthOperations {
   forgotPassword: {
     email: string;
     password: string;
@@ -115,10 +121,10 @@ export interface UserAuthOperations {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
+ * via the `definition` "admin-users".
  */
-export interface User {
-  id: string;
+export interface AdminUser {
+  id: number;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -138,11 +144,79 @@ export interface User {
   password?: string | null;
 }
 /**
+ * 应用前端用户
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users".
+ */
+export interface User {
+  id: string;
+  email: string;
+  name?: string | null;
+  avatar?: string | null;
+  role?: ('user' | 'admin' | 'editor') | null;
+  /**
+   * 用户是否激活
+   */
+  isActive?: boolean | null;
+  createdAt: string;
+  updatedAt: string;
+}
+/**
+ * 文章管理
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "posts".
+ */
+export interface Post {
+  id: string;
+  title: string;
+  /**
+   * URL友好的标识符
+   */
+  slug: string;
+  content?: string | null;
+  /**
+   * 文章摘要
+   */
+  excerpt?: string | null;
+  /**
+   * 文章作者
+   */
+  author?: (string | null) | User;
+  /**
+   * 是否发布
+   */
+  published?: boolean | null;
+  createdAt: string;
+  updatedAt: string;
+}
+/**
+ * 分类管理
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories".
+ */
+export interface Category {
+  id: string;
+  name: string;
+  /**
+   * URL友好的标识符
+   */
+  slug: string;
+  /**
+   * 分类描述
+   */
+  description?: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media".
  */
 export interface Media {
-  id: string;
+  id: number;
   alt: string;
   updatedAt: string;
   createdAt: string;
@@ -161,20 +235,32 @@ export interface Media {
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
-  id: string;
+  id: number;
   document?:
+    | ({
+        relationTo: 'admin-users';
+        value: number | AdminUser;
+      } | null)
     | ({
         relationTo: 'users';
         value: string | User;
       } | null)
     | ({
+        relationTo: 'posts';
+        value: string | Post;
+      } | null)
+    | ({
+        relationTo: 'categories';
+        value: string | Category;
+      } | null)
+    | ({
         relationTo: 'media';
-        value: string | Media;
+        value: number | Media;
       } | null);
   globalSlug?: string | null;
   user: {
-    relationTo: 'users';
-    value: string | User;
+    relationTo: 'admin-users';
+    value: number | AdminUser;
   };
   updatedAt: string;
   createdAt: string;
@@ -184,10 +270,10 @@ export interface PayloadLockedDocument {
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: string;
+  id: number;
   user: {
-    relationTo: 'users';
-    value: string | User;
+    relationTo: 'admin-users';
+    value: number | AdminUser;
   };
   key?: string | null;
   value?:
@@ -207,7 +293,7 @@ export interface PayloadPreference {
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: string;
+  id: number;
   name?: string | null;
   batch?: number | null;
   updatedAt: string;
@@ -215,9 +301,9 @@ export interface PayloadMigration {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users_select".
+ * via the `definition` "admin-users_select".
  */
-export interface UsersSelect<T extends boolean = true> {
+export interface AdminUsersSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -234,6 +320,47 @@ export interface UsersSelect<T extends boolean = true> {
         createdAt?: T;
         expiresAt?: T;
       };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users_select".
+ */
+export interface UsersSelect<T extends boolean = true> {
+  id?: T;
+  email?: T;
+  name?: T;
+  avatar?: T;
+  role?: T;
+  isActive?: T;
+  createdAt?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "posts_select".
+ */
+export interface PostsSelect<T extends boolean = true> {
+  id?: T;
+  title?: T;
+  slug?: T;
+  content?: T;
+  excerpt?: T;
+  author?: T;
+  published?: T;
+  createdAt?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories_select".
+ */
+export interface CategoriesSelect<T extends boolean = true> {
+  id?: T;
+  name?: T;
+  slug?: T;
+  description?: T;
+  createdAt?: T;
+  updatedAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

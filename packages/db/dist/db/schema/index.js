@@ -1,7 +1,7 @@
 // Export all schemas
-export * from './users';
+export * from './users.js';
 // Re-export for convenience
-import { users, posts, categories } from './users';
+import { users, posts, categories } from './users.js';
 export const schema = {
     users,
     posts,

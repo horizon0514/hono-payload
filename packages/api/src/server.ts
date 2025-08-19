@@ -2,6 +2,7 @@ import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import { logger } from 'hono/logger'
+import { env } from '@hono-payload/shared/env'
 import { prettyJSON } from 'hono/pretty-json'
 
 // Import API routes
@@ -49,7 +50,7 @@ app.onError((err, c) => {
   return c.json({ error: 'Internal Server Error' }, 500)
 })
 
-const port = Number(process.env.HONO_PORT) || 4000
+const port = env.HONO_PORT
 
 console.log(`🚀 Hono API Server running on http://localhost:${port}`)
 

@@ -1,0 +1,18 @@
+{
+  "buildCommand": "pnpm build:db && pnpm build:api",
+  "installCommand": "pnpm install --filter=@hono-payload/api --filter=@hono-payload/db",
+  "functions": {
+    "api/index.ts": {
+      "runtime": "@vercel/node"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/api/index.ts"
+    }
+  ],
+  "env": {
+    "DATABASE_URI": "@database_uri"
+  }
+}

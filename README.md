@@ -4,6 +4,7 @@
 
 ## 🏗️ 架构概述
 
+- **@hono-payload/shared** - 共享配置和工具（环境变量管理）
 - **@hono-payload/db** - 数据库schema、连接和类型定义
 - **@hono-payload/api** - Hono API服务器，轻量级高性能
 - **@hono-payload/cms** - PayloadCMS后台管理系统
@@ -12,6 +13,7 @@
 
 ```
 packages/
+├── shared/     # 共享配置和工具
 ├── db/         # 数据库包：schema、连接和类型
 ├── api/        # Hono API服务器
 └── cms/        # PayloadCMS后台管理
@@ -27,10 +29,10 @@ pnpm install
 
 ### 2. 环境配置
 
-复制环境变量文件并配置数据库：
+复制环境变量模板文件并配置数据库：
 
 ```bash
-cp .env.example .env
+cp env.template .env
 ```
 
 设置你的数据库连接：
@@ -40,11 +42,20 @@ DATABASE_URI=postgresql://username:password@localhost:5432/dbname
 PAYLOAD_SECRET=your-secret-key
 ```
 
+**注意：** 
+- 使用 `@hono-payload/shared` 包统一管理环境变量
+- 支持 Zod 类型验证，确保环境变量类型安全
+- 支持多环境配置文件，按优先级自动加载：
+  - `.env.{NODE_ENV}.local` (最高优先级)
+  - `.env.local` 
+  - `.env.{NODE_ENV}` 
+  - `.env` (最低优先级)
+
 ### 3. 初始化数据库
 
 ```bash
-# 构建数据库包（必须先做）
-pnpm build:db
+# 构建所有包（会自动按依赖顺序构建）
+pnpm build
 
 # 生成并推送数据库schema
 pnpm db:generate
@@ -71,7 +82,8 @@ pnpm dev:api
 
 ### 构建
 ```bash
-pnpm build          # 构建所有包
+pnpm build          # 构建所有包（自动按依赖顺序）
+pnpm build:shared   # 构建共享包
 pnpm build:db       # 构建数据库包
 pnpm build:api      # 构建API服务器
 pnpm build:cms      # 构建CMS后台
@@ -107,9 +119,20 @@ pnpm lint          # 代码检查
 - **易维护**: 模块化设计，高内聚低耦合
 - **可扩展**: 可独立部署和扩展各个服务
 
+## 🚀 部署
+
+本项目支持分离式部署：
+
+- **CMS** → Vercel
+- **API** → Vercel (支持迁移至 Cloudflare Workers)
+- **数据库** → Supabase PostgreSQL
+
+查看 [DEPLOYMENT.md](./DEPLOYMENT.md) 获取详细的部署指南。
+
 ## 📖 详细文档
 
-查看 [ARCHITECTURE.md](./ARCHITECTURE.md) 获取详细的架构说明和开发指南。
+- [ARCHITECTURE.md](./ARCHITECTURE.md) - 架构说明和开发指南
+- [DEPLOYMENT.md](./DEPLOYMENT.md) - 部署配置和操作指南
 
 ## 🛠️ 技术栈
 

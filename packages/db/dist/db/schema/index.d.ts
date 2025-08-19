@@ -1,4 +1,4 @@
-export * from './users';
+export * from './users.js';
 export declare const schema: {
     users: import("drizzle-orm/pg-core").PgTableWithColumns<{
         name: "users";
@@ -37,7 +37,9 @@ export declare const schema: {
                 baseColumn: never;
                 identity: undefined;
                 generated: undefined;
-            }, {}, {}>;
+            }, {}, {
+                length: 255;
+            }>;
             name: import("drizzle-orm/pg-core").PgColumn<{
                 name: "name";
                 tableName: "users";
@@ -54,7 +56,9 @@ export declare const schema: {
                 baseColumn: never;
                 identity: undefined;
                 generated: undefined;
-            }, {}, {}>;
+            }, {}, {
+                length: 255;
+            }>;
             avatar: import("drizzle-orm/pg-core").PgColumn<{
                 name: "avatar";
                 tableName: "users";
@@ -88,7 +92,9 @@ export declare const schema: {
                 baseColumn: never;
                 identity: undefined;
                 generated: undefined;
-            }, {}, {}>;
+            }, {}, {
+                length: 50;
+            }>;
             isActive: import("drizzle-orm/pg-core").PgColumn<{
                 name: "is_active";
                 tableName: "users";
@@ -180,7 +186,9 @@ export declare const schema: {
                 baseColumn: never;
                 identity: undefined;
                 generated: undefined;
-            }, {}, {}>;
+            }, {}, {
+                length: 255;
+            }>;
             slug: import("drizzle-orm/pg-core").PgColumn<{
                 name: "slug";
                 tableName: "posts";
@@ -197,7 +205,9 @@ export declare const schema: {
                 baseColumn: never;
                 identity: undefined;
                 generated: undefined;
-            }, {}, {}>;
+            }, {}, {
+                length: 255;
+            }>;
             content: import("drizzle-orm/pg-core").PgColumn<{
                 name: "content";
                 tableName: "posts";
@@ -340,7 +350,9 @@ export declare const schema: {
                 baseColumn: never;
                 identity: undefined;
                 generated: undefined;
-            }, {}, {}>;
+            }, {}, {
+                length: 100;
+            }>;
             slug: import("drizzle-orm/pg-core").PgColumn<{
                 name: "slug";
                 tableName: "categories";
@@ -357,7 +369,9 @@ export declare const schema: {
                 baseColumn: never;
                 identity: undefined;
                 generated: undefined;
-            }, {}, {}>;
+            }, {}, {
+                length: 100;
+            }>;
             description: import("drizzle-orm/pg-core").PgColumn<{
                 name: "description";
                 tableName: "categories";

@@ -1,0 +1,10 @@
+{
+  "buildCommand": "pnpm build:db && pnpm build:cms",
+  "outputDirectory": ".next",
+  "framework": "nextjs",
+  "installCommand": "pnpm install --filter=@hono-payload/cms --filter=@hono-payload/db",
+  "env": {
+    "DATABASE_URI": "@database_uri",
+    "PAYLOAD_SECRET": "@payload_secret"
+  }
+}
