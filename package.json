@@ -6,11 +6,14 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "pnpm --filter='@hono-payload/*' build",
+    "build": "ultra -r --filter '@hono-payload/*' build",
+    "build:incremental": "tsc --build",
+    "build:shared": "pnpm --filter=@hono-payload/shared build",
     "build:db": "pnpm --filter=@hono-payload/db build",
     "build:api": "pnpm --filter=@hono-payload/api build",
     "build:cms": "pnpm --filter=@hono-payload/cms build",
-    "dev": "pnpm --parallel --filter='@hono-payload/*' dev",
+    "dev": "ultra -r --filter '@hono-payload/*' dev",
+    "dev:shared": "pnpm --filter=@hono-payload/shared dev",
     "dev:db": "pnpm --filter=@hono-payload/db dev",
     "dev:api": "pnpm --filter=@hono-payload/api dev",
     "dev:cms": "pnpm --filter=@hono-payload/cms dev",
@@ -18,14 +21,18 @@
     "db:migrate": "pnpm --filter=@hono-payload/db db:migrate",
     "db:push": "pnpm --filter=@hono-payload/db db:push",
     "db:studio": "pnpm --filter=@hono-payload/db db:studio",
-    "lint": "pnpm --filter='@hono-payload/*' lint",
-    "clean": "pnpm --filter='@hono-payload/*' exec rm -rf dist .next node_modules",
+    "lint": "ultra -r --filter '@hono-payload/*' lint",
+    "clean": "ultra -r --filter '@hono-payload/*' clean && rm -rf node_modules/.cache",
+    "clean:deep": "pnpm --filter='@hono-payload/*' exec rm -rf dist .next node_modules && rm -rf node_modules",
+    "type-check": "tsc --build --dry",
+    "build-info": "node scripts/build-info.js",
     "install:all": "pnpm install"
   },
   "devDependencies": {
     "dotenv": "16.4.7",
     "prettier": "^3.4.2",
-    "typescript": "5.7.3"
+    "typescript": "5.7.3",
+    "ultra-runner": "^3.10.5"
   },
   "engines": {
     "node": "^18.20.2 || >=20.9.0",

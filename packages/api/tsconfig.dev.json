@@ -1,0 +1,20 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "allowImportingTsExtensions": false,
+    "noEmit": true,
+    "paths": {
+      "@hono-payload/shared/*": ["../shared/src/*"],
+      "@hono-payload/shared": ["../shared/src/index.ts"],
+      "@hono-payload/shared/env": ["../shared/src/env.ts"],
+      "@hono-payload/db/*": ["../db/src/*"],
+      "@hono-payload/db": ["../db/src/index.ts"],
+      "@hono-payload/db/db": ["../db/src/db/index.ts"],
+      "@hono-payload/db/types": ["../db/src/types/index.ts"]
+    }
+  },
+  "ts-node": {
+    "esm": true
+  }
+}

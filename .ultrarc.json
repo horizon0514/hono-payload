@@ -1,0 +1,10 @@
+{
+  "type": "pnpm",
+  "concurrency": 4,
+  "recursive": true,
+  "root": true,
+  "cache": true,
+  "buildCache": true,
+  "logLevel": "info",
+  "pretty": true
+}

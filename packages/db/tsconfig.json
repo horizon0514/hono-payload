@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2022",
+    "lib": ["ES2022"],
     "module": "ESNext",
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": false,
@@ -12,8 +13,20 @@
     "declaration": true,
     "declarationMap": true,
     "outDir": "./dist",
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "composite": true,
+    "incremental": true,
+    "paths": {
+      "@hono-payload/shared/*": ["../shared/src/*"],
+      "@hono-payload/shared": ["../shared/src/index.ts"],
+      "@hono-payload/shared/env": ["../shared/src/env.ts"]
+    }
   },
   "include": ["src/**/*"],
-  "exclude": ["dist", "node_modules"]
+  "exclude": ["dist", "node_modules"],
+  "references": [
+    {
+      "path": "../shared"
+    }
+  ]
 }

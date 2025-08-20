@@ -6,8 +6,9 @@
   "main": "./dist/server.js",
   "scripts": {
     "build": "tsc",
-    "dev": "tsx src/server.ts",
-    "start": "node dist/server.js"
+    "dev": "tsx --tsconfig tsconfig.dev.json src/server.ts",
+    "start": "node dist/server.js",
+    "clean": "rm -rf dist *.tsbuildinfo"
   },
   "dependencies": {
     "@hono-payload/db": "workspace:*",

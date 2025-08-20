@@ -1,7 +1,7 @@
+import { env } from '@hono-payload/shared/env'
 import { drizzle } from 'drizzle-orm/postgres-js'
 import postgres from 'postgres'
 import * as schema from './schema/index.js'
-import { env } from '@hono-payload/shared/env'
 
 // Create PostgreSQL connection using validated env
 const connectionString = env.DATABASE_URI

@@ -1,23 +1,24 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
-/.pnp
+node_modules/
+.pnp
 .pnp.js
 .yarn/install-state.gz
 
-/.idea/*
-!/.idea/runConfigurations
+# IDE
+.idea/
+!.idea/runConfigurations/
 
 # testing
-/coverage
+coverage/
 
 # next.js
-/.next/
-/out/
+.next/
+out/
 
 # production
-/build
+build/
 dist/
 
 # misc
@@ -38,18 +39,31 @@ yarn-error.log*
 
 # Note: Only env.template should be committed
 
-# vercel
-.vercel
+# deployment
+.vercel/
+.netlify/
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
 
-/media
+# Monorepo build tools cache
+.ultra.cache.json
+**/.ultra.cache.json
+node_modules/.cache/
+.cache/
+.pnpm-store/
+
+# Build tools temporary files and cache
+.turbo/
+.nx/
+.swc/
+.babel-cache/
+
+media/
 
 # Playwright
-node_modules/
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/

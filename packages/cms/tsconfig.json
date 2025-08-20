@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ES2022"
-    ],
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -23,22 +19,18 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@payload-config": [
-        "./src/payload.config.ts"
-      ]
+      "@/*": ["./src/*"],
+      "@payload-config": ["./src/payload.config.ts"],
+      "@hono-payload/shared/*": ["../shared/src/*"],
+      "@hono-payload/shared": ["../shared/src/index.ts"],
+      "@hono-payload/shared/env": ["../shared/src/env.ts"],
+      "@hono-payload/db/*": ["../db/src/*"],
+      "@hono-payload/db": ["../db/src/index.ts"],
+      "@hono-payload/db/db": ["../db/src/db/index.ts"],
+      "@hono-payload/db/types": ["../db/src/types/index.ts"]
     },
-    "target": "ES2022",
+    "target": "ES2022"
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
 }
