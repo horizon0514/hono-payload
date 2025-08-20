@@ -4,16 +4,16 @@ import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
-import { fileURLToPath } from 'url'
 import sharp from 'sharp'
+import { fileURLToPath } from 'url'
 
-import { AdminUsers } from './collections/Users'
-import { Media } from './collections/Media'
-import { AppUsers } from './collections/AppUsers'
-import { Posts } from './collections/Posts'
-import { Categories } from './collections/Categories'
 import { schema } from '@hono-payload/db/db'
 import { env } from '@hono-payload/shared/env'
+import { AppUsers } from './collections/AppUsers'
+import { Categories } from './collections/Categories'
+import { Media } from './collections/Media'
+import { Posts } from './collections/Posts'
+import { AdminUsers } from './collections/Users'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -41,6 +41,7 @@ export default buildConfig({
     pool: {
       connectionString: env.DATABASE_URI,
     },
+    push: false,
     // 混合现有的Drizzle schema
     beforeSchemaInit: [
       ({ schema: payloadSchema }) => ({
