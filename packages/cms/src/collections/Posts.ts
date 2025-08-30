@@ -3,6 +3,10 @@ import { v4 as uuidv4 } from 'uuid'
 
 export const Posts: CollectionConfig = {
   slug: 'posts', // 对应数据库中的 posts 表
+  labels: {
+    singular: '文章',
+    plural: '文章',
+  },
   admin: {
     useAsTitle: 'title',
     description: '文章管理',
@@ -20,6 +24,7 @@ export const Posts: CollectionConfig = {
     },
     {
       name: 'title',
+      label: '标题',
       type: 'text',
       required: true,
     },

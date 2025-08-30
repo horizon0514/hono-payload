@@ -2,6 +2,7 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { zh } from '@payloadcms/translations/languages/zh'
 import path from 'path'
 import { buildConfig } from 'payload'
 import sharp from 'sharp'
@@ -54,6 +55,10 @@ export default buildConfig({
     ],
   }),
   sharp,
+  i18n: {
+    supportedLanguages: { zh },
+    fallbackLanguage: 'zh',
+  },
   plugins: [
     payloadCloudPlugin(),
     // storage-adapter-placeholder
