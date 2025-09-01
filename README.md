@@ -133,6 +133,10 @@ pnpm lint          # 代码检查
 
 - [ARCHITECTURE.md](./ARCHITECTURE.md) - 架构说明和开发指南
 - [DEPLOYMENT.md](./DEPLOYMENT.md) - 部署配置和操作指南
+- [API 文档](./docs/api.md) - REST 接口与用法
+- [DB 文档](./docs/db.md) - 数据库连接、Schema 与类型
+- [CMS 文档](./docs/cms.md) - Next.js + Payload 使用说明
+- [Shared 文档](./docs/shared.md) - 环境变量与共享工具
 
 ## 🛠️ 技术栈
 
