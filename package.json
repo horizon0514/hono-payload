@@ -6,41 +6,40 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "pnpm --filter='@hono-payload/*' build",
-    "build:shared": "pnpm --filter=@hono-payload/shared build",
-    "build:db": "pnpm --filter=@hono-payload/db build",
-    "build:api": "pnpm --filter=@hono-payload/api build",
-    "build:cms": "pnpm --filter=@hono-payload/cms build",
-    "dev": "pnpm build:shared && pnpm build:db && pnpm --parallel --filter='@hono-payload/*' dev",
-    "dev:shared": "pnpm --filter=@hono-payload/shared dev",
-    "dev:db": "pnpm --filter=@hono-payload/db dev",
-    "dev:api": "pnpm build:shared && pnpm build:db && pnpm --filter=@hono-payload/api dev",
-    "dev:cms": "pnpm --filter=@hono-payload/cms dev",
-    "db:generate": "pnpm --filter=@hono-payload/db db:generate",
-    "db:migrate": "pnpm --filter=@hono-payload/db db:migrate",
-    "db:push": "pnpm --filter=@hono-payload/db db:push",
-    "db:studio": "pnpm --filter=@hono-payload/db db:studio",
-    "lint": "pnpm --filter='@hono-payload/*' lint",
-    "clean": "pnpm --filter='@hono-payload/*' exec rm -rf dist .next node_modules",
-    "install:all": "pnpm install"
+    "build": "turbo run build",
+    "build:shared": "turbo run build --filter=@hono-payload/shared",
+    "build:db": "turbo run build --filter=@hono-payload/db",
+    "build:api": "turbo run build --filter=@hono-payload/api",
+    "build:cms": "turbo run build --filter=@hono-payload/cms",
+    "dev": "turbo run dev --parallel",
+    "dev:shared": "turbo run dev --filter=@hono-payload/shared",
+    "dev:db": "turbo run dev --filter=@hono-payload/db",
+    "dev:api": "turbo run dev --filter=@hono-payload/api",
+    "dev:cms": "turbo run dev --filter=@hono-payload/cms",
+    "db:generate": "turbo run db:generate --filter=@hono-payload/db",
+    "db:migrate": "turbo run db:migrate --filter=@hono-payload/db",
+    "db:push": "turbo run db:push --filter=@hono-payload/db",
+    "db:studio": "turbo run db:studio --filter=@hono-payload/db",
+    "lint": "turbo run lint",
+    "format": "turbo run format",
+    "clean": "turbo run clean || true && find packages -maxdepth 2 -type d \\( -name dist -o -name .next -o -name build -o -name node_modules \\) -prune -exec rm -rf {} +",
+    "install:all": "bun install"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
     "dotenv": "16.4.7",
     "prettier": "^3.4.2",
+    "turbo": "^2.2.3",
     "typescript": "5.7.3"
   },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
   "engines": {
-    "node": "^18.20.2 || >=20.9.0",
-    "pnpm": "^9 || ^10"
+    "node": "^18.20.2 || >=20.9.0"
   },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "sharp",
-      "esbuild",
-      "unrs-resolver"
-    ]
-  },
-  "packageManager": "pnpm@10.14.0",
+  "packageManager": "bun@1.1.34",
   "dependencies": {
     "zod": "^4.0.17"
   }

@@ -1,23 +1,23 @@
 // storage-adapter-import-placeholder
-import { postgresAdapter } from '@payloadcms/db-postgres'
-import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import { zh } from '@payloadcms/translations/languages/zh'
-import path from 'path'
-import { buildConfig } from 'payload'
-import sharp from 'sharp'
-import { fileURLToPath } from 'url'
+import { postgresAdapter } from "@payloadcms/db-postgres";
+import { payloadCloudPlugin } from "@payloadcms/payload-cloud";
+import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import { zh } from "@payloadcms/translations/languages/zh";
+import path from "path";
+import { buildConfig } from "payload";
+import sharp from "sharp";
+import { fileURLToPath } from "url";
 
-import { schema } from '@hono-payload/db/db'
-import { env } from '@hono-payload/shared/env'
-import { AppUsers } from './collections/AppUsers'
-import { Categories } from './collections/Categories'
-import { Media } from './collections/Media'
-import { Posts } from './collections/Posts'
-import { AdminUsers } from './collections/Users'
+import { schema } from "@hono-payload/db/db";
+import { env } from "./env";
+import { AppUsers } from "./collections/AppUsers";
+import { Categories } from "./collections/Categories";
+import { Media } from "./collections/Media";
+import { Posts } from "./collections/Posts";
+import { AdminUsers } from "./collections/Users";
 
-const filename = fileURLToPath(import.meta.url)
-const dirname = path.dirname(filename)
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
 
 export default buildConfig({
   admin: {
@@ -36,7 +36,7 @@ export default buildConfig({
   editor: lexicalEditor(),
   secret: env.PAYLOAD_SECRET,
   typescript: {
-    outputFile: path.resolve(dirname, 'payload-types.ts'),
+    outputFile: path.resolve(dirname, "payload-types.ts"),
   },
   db: postgresAdapter({
     pool: {
@@ -57,10 +57,10 @@ export default buildConfig({
   sharp,
   i18n: {
     supportedLanguages: { zh },
-    fallbackLanguage: 'zh',
+    fallbackLanguage: "zh",
   },
   plugins: [
     payloadCloudPlugin(),
     // storage-adapter-placeholder
   ],
-})
+});

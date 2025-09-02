@@ -18,13 +18,13 @@
 
 ```bash
 # 本地构建 db 包
-pnpm build:db
+bun run build:db
 
 # 设置环境变量
 export DATABASE_URI="postgresql://postgres:[password]@db.[project-id].supabase.co:5432/postgres"
 
 # 推送数据库 schema
-pnpm db:push
+bun run db:push
 ```
 
 ## 🎨 CMS 部署 (Vercel)
@@ -36,9 +36,9 @@ pnpm db:push
 1. **导入项目**: 选择 `packages/cms` 目录
 2. **构建配置**:
    ```
-   Build Command: pnpm build:db && pnpm build:cms
+   Build Command: bun run build:db && bun run build:cms
    Output Directory: .next
-   Install Command: pnpm install --filter=@hono-payload/cms --filter=@hono-payload/db
+   Install Command: bun install
    ```
 
 ### 2. 环境变量
@@ -67,8 +67,8 @@ vercel --prod
 1. **导入项目**: 选择 `packages/api` 目录
 2. **构建配置**:
    ```
-   Build Command: pnpm build:db && pnpm build:api
-   Install Command: pnpm install --filter=@hono-payload/api --filter=@hono-payload/db
+   Build Command: bun run build:db && bun run build:api
+   Install Command: bun install
    ```
 
 ### 2. 环境变量
@@ -147,7 +147,7 @@ id = "your-kv-namespace-id"
 ### 3. 部署命令
 
 ```bash
-pnpm wrangler deploy --env production
+bunx wrangler deploy --env production
 ```
 
 ## 📊 监控和日志
@@ -186,12 +186,12 @@ pnpm wrangler deploy --env production
 
 ```bash
 # 本地测试构建
-pnpm build:db && pnpm build:api
-pnpm build:db && pnpm build:cms
+bun run build:db && bun run build:api
+bun run build:db && bun run build:cms
 
 # 本地测试运行
-pnpm dev:api
-pnpm dev:cms
+bun run dev:api
+bun run dev:cms
 ```
 
 ## 📈 性能优化

@@ -1,0 +1,10 @@
+node_modules
+dist
+.next
+build
+.turbo
+coverage
+out
+playwright-report
+test-results
+blob-report

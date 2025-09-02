@@ -1,2 +1,2 @@
 // Re-export all shared types
-export * from './shared'
+export * from "./shared";
