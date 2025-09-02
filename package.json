@@ -21,14 +21,16 @@
     "db:push": "turbo run db:push --filter=@hono-payload/db",
     "db:studio": "turbo run db:studio --filter=@hono-payload/db",
     "lint": "turbo run lint",
+    "format": "turbo run format",
     "clean": "turbo run clean || true && find packages -maxdepth 2 -type d \\( -name dist -o -name .next -o -name build -o -name node_modules \\) -prune -exec rm -rf {} +",
     "install:all": "bun install"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
     "dotenv": "16.4.7",
     "prettier": "^3.4.2",
-    "typescript": "5.7.3",
-    "turbo": "^2.2.3"
+    "turbo": "^2.2.3",
+    "typescript": "5.7.3"
   },
   "workspaces": [
     "packages/*",

@@ -25,7 +25,9 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio",
+    "lint": "biome check .",
+    "format": "biome format --write ."
   },
   "dependencies": {
     "@hono-payload/shared": "workspace:*",
