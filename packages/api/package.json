@@ -6,8 +6,9 @@
   "main": "./dist/server.js",
   "scripts": {
     "build": "tsc",
-    "dev": "tsx --watch src/server.ts",
-    "start": "node dist/server.js",
+    "with-env": "dotenv -e ../../.env --",
+    "dev": "bun run with-env tsx --watch src/server.ts",
+    "start": "bun run with-env node dist/server.js",
     "lint": "biome check .",
     "format": "biome format --write ."
   },
@@ -23,6 +24,7 @@
     "@types/cors": "^2.8.17",
     "@vercel/node": "^3.2.19",
     "tsx": "^4.19.2",
-    "typescript": "5.7.3"
+    "typescript": "5.7.3",
+    "dotenv-cli": "^7.4.2"
   }
 }

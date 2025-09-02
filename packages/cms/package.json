@@ -4,15 +4,16 @@
   "description": "PayloadCMS backend admin",
   "type": "module",
   "scripts": {
-    "build": "cross-env NODE_OPTIONS=\"--no-deprecation --max-old-space-size=8000\" next build",
-    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
-    "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
-    "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
-    "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
+    "with-env": "dotenv -e ../../.env --",
+    "build": "bun run with-env cross-env NODE_OPTIONS=\"--no-deprecation --max-old-space-size=8000\" next build",
+    "dev": "bun run with-env cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "devsafe": "rm -rf .next && bun run with-env cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "generate:importmap": "bun run with-env cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
+    "generate:types": "bun run with-env cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
     "lint": "biome check .",
     "format": "biome format --write .",
-    "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
-    "start": "cross-env NODE_OPTIONS=--no-deprecation next start"
+    "payload": "bun run with-env cross-env NODE_OPTIONS=--no-deprecation payload",
+    "start": "bun run with-env cross-env NODE_OPTIONS=--no-deprecation next start"
   },
   "dependencies": {
     "@hono-payload/db": "workspace:*",
@@ -39,6 +40,7 @@
     "@types/uuid": "^10.0.0",
     "eslint": "^9.16.0",
     "eslint-config-next": "15.4.4",
-    "typescript": "5.7.3"
+    "typescript": "5.7.3",
+    "dotenv-cli": "^7.4.2"
   }
 }
