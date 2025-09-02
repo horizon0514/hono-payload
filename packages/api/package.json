@@ -8,6 +8,7 @@
     "build": "tsc",
     "dev": "tsx --watch src/server.ts",
     "start": "node dist/server.js",
+    "env:check": "node ../shared/scripts/env-check.js",
     "lint": "biome check .",
     "format": "biome format --write ."
   },

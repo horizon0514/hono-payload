@@ -23,7 +23,7 @@ function findProjectRoot(): string {
 const projectRoot = findProjectRoot();
 config({
   path: projectRoot,
-  silent: false, // 显示加载信息
+  silent: true,
 });
 
 // 定义环境变量 schema
@@ -56,12 +56,4 @@ export const isDev = env.NODE_ENV === "development";
 export const isProd = env.NODE_ENV === "production";
 export const isTest = env.NODE_ENV === "test";
 
-// 记录加载状态（仅开发环境）
-if (isDev) {
-  console.log("✅ 环境变量加载成功:", {
-    NODE_ENV: env.NODE_ENV,
-    HONO_PORT: env.HONO_PORT,
-    DATABASE_URI: env.DATABASE_URI.replace(/:[^:@]*@/, ":****@"),
-    PAYLOAD_SECRET: "****",
-  });
-}
+// 保持安静，避免在 Turborepo 任务中刷屏

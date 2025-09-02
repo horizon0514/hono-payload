@@ -22,6 +22,7 @@
     "db:studio": "turbo run db:studio --filter=@hono-payload/db",
     "lint": "turbo run lint",
     "format": "turbo run format",
+    "env:check": "turbo run env:check",
     "clean": "turbo run clean || true && find packages -maxdepth 2 -type d \\( -name dist -o -name .next -o -name build -o -name node_modules \\) -prune -exec rm -rf {} +",
     "install:all": "bun install"
   },

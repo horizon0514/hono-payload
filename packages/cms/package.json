@@ -9,6 +9,7 @@
     "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
     "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
+    "env:check": "node ../shared/scripts/env-check.js",
     "lint": "biome check .",
     "format": "biome format --write .",
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",

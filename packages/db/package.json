@@ -26,6 +26,7 @@
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
+    "env:check": "node ../shared/scripts/env-check.js",
     "lint": "biome check .",
     "format": "biome format --write ."
   },

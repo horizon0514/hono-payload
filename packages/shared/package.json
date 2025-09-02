@@ -18,6 +18,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
+    "env:check": "node ./scripts/env-check.js",
     "lint": "biome check .",
     "format": "biome format --write ."
   },
