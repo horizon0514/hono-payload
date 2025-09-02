@@ -1,2 +1,2 @@
-// Export environment configuration
-export * from "./env.js";
+// Shared utilities (env removed)
+export {};

@@ -23,7 +23,6 @@
     "format": "biome format --write ."
   },
   "dependencies": {
-    "dotenv-flow": "^4.1.0",
     "zod": "^4.0.17"
   },
   "devDependencies": {

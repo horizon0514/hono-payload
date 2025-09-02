@@ -1,5 +1,5 @@
 import type { Config } from "drizzle-kit";
-import { env } from "@hono-payload/shared/env";
+import { env } from "./src/env";
 
 export default {
   schema: "./src/db/schema/index.ts",

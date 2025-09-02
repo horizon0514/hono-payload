@@ -9,7 +9,7 @@ import sharp from "sharp";
 import { fileURLToPath } from "url";
 
 import { schema } from "@hono-payload/db/db";
-import { env } from "@hono-payload/shared/env";
+import { env } from "./env";
 import { AppUsers } from "./collections/AppUsers";
 import { Categories } from "./collections/Categories";
 import { Media } from "./collections/Media";
