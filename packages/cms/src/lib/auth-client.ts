@@ -1,4 +1,3 @@
-import { createAuthClient } from "better-auth/client";
-
-export const authClient = createAuthClient();
+// removed per requirement: CMS uses Payload auth only.
+export {};
 

@@ -10,7 +10,8 @@
     "dev": "tsc --watch"
   },
   "dependencies": {
-    "better-auth": "*"
+    "better-auth": "*",
+    "@hono-payload/db": "workspace:*"
   },
   "devDependencies": {
     "typescript": "5.7.3"

@@ -9,6 +9,7 @@ import { prettyJSON } from "hono/pretty-json";
 import { usersRouter } from "./routes/users";
 import { postsRouter } from "./routes/posts";
 import { categoriesRouter } from "./routes/categories";
+import { authRouter } from "./routes/auth";
 
 const app = new Hono();
 
@@ -38,6 +39,7 @@ app.get("/", (c) => {
 app.route("/api/users", usersRouter);
 app.route("/api/posts", postsRouter);
 app.route("/api/categories", categoriesRouter);
+app.route("/api/auth", authRouter);
 
 // 404 handler
 app.notFound((c) => {

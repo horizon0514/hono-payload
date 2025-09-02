@@ -1,2 +1,3 @@
-export { auth } from "@hono-payload/auth";
+// removed per requirement: CMS uses Payload auth; Better Auth not used here.
+export {};
 

@@ -17,7 +17,6 @@
   },
   "dependencies": {
     "@hono-payload/db": "workspace:*",
-    "@hono-payload/auth": "workspace:*",
     "@payloadcms/db-postgres": "3.52.0",
     "@payloadcms/next": "3.52.0",
     "@payloadcms/payload-cloud": "3.52.0",
@@ -28,7 +27,6 @@
     "dotenv": "16.4.7",
     "graphql": "^16.8.1",
     "next": "15.4.4",
-    "better-auth": "*",
     "payload": "3.52.0",
     "@t3-oss/env-nextjs": "^0.12.0",
     "react": "19.1.1",

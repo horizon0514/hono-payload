@@ -5,6 +5,8 @@ export const env = createEnv({
     DATABASE_URI: z.string().url(),
     HONO_PORT: z.coerce.number().int().positive().default(4000),
     NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
+    BETTER_AUTH_SECRET: z.string().min(16),
+    BETTER_AUTH_URL: z.string().url(),
   },
   runtimeEnv: process.env,
   emptyStringAsUndefined: true,
