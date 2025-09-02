@@ -15,7 +15,7 @@
 2. **Schema统一管理**: 所有数据库schema由db包的Drizzle定义
 3. **类型安全**: 端到端TypeScript类型安全，包间类型共享
 4. **独立服务**: API和CMS作为独立服务，可分别扩展
-5. **工作区依赖**: 使用pnpm workspace实现高效的包管理
+5. **工作区依赖**: 使用 Bun workspaces + Turborepo 实现高效的包管理
 
 ## Monorepo 目录结构
 
@@ -51,7 +51,7 @@ hono-payload/
 │       ├── package.json
 │       ├── tsconfig.json
 │       └── next.config.mjs
-├── pnpm-workspace.yaml        # pnpm工作区配置
+├── package.json               # 根package.json（Bun workspaces）
 ├── package.json               # 根package.json
 └── ARCHITECTURE.md
 ```
@@ -124,7 +124,7 @@ interface PaginatedResponse<T> extends ApiResponse<T[]> {
 #### 初始化项目
 ```bash
 # 安装所有依赖
-pnpm install
+bun install
 
 # 构建数据库包（必须先构建）
 pnpm build:db
@@ -134,16 +134,16 @@ pnpm build:db
 
 **方式1: 全部启动（并行）**
 ```bash
-pnpm dev  # 启动所有包的开发模式
+bun run dev  # 启动所有包的开发模式
 ```
 
 **方式2: 单独启动**
 ```bash
 # 启动PayloadCMS后台 (http://localhost:3000)
-pnpm dev:cms
+bun run dev:cms
 
 # 启动Hono API服务器 (http://localhost:4000)  
-pnpm dev:api
+bun run dev:api
 
 # 启动db包的类型监听
 pnpm dev:db
@@ -152,12 +152,12 @@ pnpm dev:db
 #### 构建命令
 ```bash
 # 构建所有包
-pnpm build
+bun run build
 
 # 单独构建
-pnpm build:db       # 必须先构建
-pnpm build:api
-pnpm build:cms
+bun run build:db       # 必须先构建
+bun run build:api
+bun run build:cms
 ```
 
 ### 数据库管理
@@ -166,16 +166,16 @@ pnpm build:cms
 
 ```bash
 # 生成migration文件
-pnpm db:generate
+bun run db:generate
 
 # 执行migrations
-pnpm db:migrate
+bun run db:migrate
 
 # 推送schema到数据库（开发环境）
-pnpm db:push
+bun run db:push
 
 # 启动Drizzle Studio
-pnpm db:studio
+bun run db:studio
 ```
 
 ### 环境变量
@@ -240,7 +240,7 @@ export type NewUser = InferInsertModel<typeof users>
 ### 性能优势
 1. **构建优化**: 增量构建，只构建变更的包
 2. **运行时性能**: Hono轻量级，Drizzle零运行时开销
-3. **缓存效率**: pnpm workspace提供高效的依赖缓存
+3. **缓存效率**: Bun + Turborepo 提供高效的依赖缓存
 4. **按需加载**: 可以按需构建和部署特定服务
 
 ## 后续扩展

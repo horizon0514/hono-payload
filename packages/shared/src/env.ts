@@ -7,9 +7,14 @@ import { existsSync } from 'fs'
 function findProjectRoot(): string {
   let currentPath = process.cwd()
 
-  // 从当前目录向上查找，直到找到包含 pnpm-workspace.yaml 的目录
+  // 从当前目录向上查找，直到找到包含工作区标识文件的目录
   while (currentPath !== path.dirname(currentPath)) {
-    if (existsSync(path.join(currentPath, 'pnpm-workspace.yaml'))) {
+    const indicators = [
+      'turbo.json',
+      'bun.lockb',
+      'pnpm-workspace.yaml',
+    ]
+    if (indicators.some((f) => existsSync(path.join(currentPath, f)))) {
       return currentPath
     }
     currentPath = path.dirname(currentPath)

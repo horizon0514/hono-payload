@@ -24,7 +24,7 @@ packages/
 ### 1. 安装依赖
 
 ```bash
-pnpm install
+bun install
 ```
 
 ### 2. 环境配置
@@ -55,60 +55,60 @@ PAYLOAD_SECRET=your-secret-key
 
 ```bash
 # 构建所有包（会自动按依赖顺序构建）
-pnpm build
+bun run build
 
 # 生成并推送数据库schema
-pnpm db:generate
-pnpm db:push
+bun run db:generate
+bun run db:push
 ```
 
 ### 4. 启动开发环境
 
 **方式1: 全部启动（推荐）**
 ```bash
-pnpm dev
+bun run dev
 ```
 
 **方式2: 单独启动**
 ```bash
 # PayloadCMS后台 (http://localhost:3000)
-pnpm dev:cms
+bun run dev:cms
 
 # Hono API服务器 (http://localhost:4000)
-pnpm dev:api
+bun run dev:api
 ```
 
 ## 📝 可用命令
 
 ### 构建
 ```bash
-pnpm build          # 构建所有包（自动按依赖顺序）
-pnpm build:shared   # 构建共享包
-pnpm build:db       # 构建数据库包
-pnpm build:api      # 构建API服务器
-pnpm build:cms      # 构建CMS后台
+bun run build          # 构建所有包（自动按依赖顺序）
+bun run build:shared   # 构建共享包
+bun run build:db       # 构建数据库包
+bun run build:api      # 构建API服务器
+bun run build:cms      # 构建CMS后台
 ```
 
 ### 开发
 ```bash
-pnpm dev           # 启动所有包的开发模式
-pnpm dev:db        # 启动db包的类型监听
-pnpm dev:api       # 启动API服务器
-pnpm dev:cms       # 启动CMS后台
+bun run dev           # 启动所有包的开发模式
+bun run dev:db        # 启动db包的类型监听
+bun run dev:api       # 启动API服务器
+bun run dev:cms       # 启动CMS后台
 ```
 
 ### 数据库
 ```bash
-pnpm db:generate   # 生成迁移文件
-pnpm db:migrate    # 执行迁移
-pnpm db:push       # 推送schema到数据库
-pnpm db:studio     # 启动Drizzle Studio
+bun run db:generate   # 生成迁移文件
+bun run db:migrate    # 执行迁移
+bun run db:push       # 推送schema到数据库
+bun run db:studio     # 启动Drizzle Studio
 ```
 
 ### 工具
 ```bash
-pnpm clean         # 清理所有构建产物
-pnpm lint          # 代码检查
+bun run clean         # 清理所有构建产物
+bun run lint          # 代码检查
 ```
 
 ## 🌟 架构特点
@@ -139,7 +139,7 @@ pnpm lint          # 代码检查
 - **API**: Hono + Drizzle ORM + PostgreSQL
 - **CMS**: PayloadCMS + Next.js
 - **类型**: TypeScript + 共享类型定义
-- **工具**: pnpm workspace + Monorepo
+- **工具**: Bun workspaces + Turborepo
 
 ## 🤝 贡献
 

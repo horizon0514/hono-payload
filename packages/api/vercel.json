@@ -1,6 +1,6 @@
 {
-  "buildCommand": "pnpm build:db && pnpm build:api",
-  "installCommand": "pnpm install --filter=@hono-payload/api --filter=@hono-payload/db",
+  "buildCommand": "bun run build:db && bun run build:api",
+  "installCommand": "bun install",
   "functions": {
     "api/index.ts": {
       "runtime": "@vercel/node"
