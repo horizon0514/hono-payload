@@ -22,10 +22,11 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "db:generate": "drizzle-kit generate",
-    "db:migrate": "drizzle-kit migrate",
-    "db:push": "drizzle-kit push",
-    "db:studio": "drizzle-kit studio",
+    "with-env": "dotenv -e ../../.env --",
+    "db:generate": "bun run with-env drizzle-kit generate",
+    "db:migrate": "bun run with-env drizzle-kit migrate",
+    "db:push": "bun run with-env drizzle-kit push",
+    "db:studio": "bun run with-env drizzle-kit studio",
     "lint": "biome check .",
     "format": "biome format --write ."
   },
@@ -37,6 +38,7 @@
   "devDependencies": {
     "@types/node": "^22.5.4",
     "drizzle-kit": "^0.31.2",
-    "typescript": "5.7.3"
+    "typescript": "5.7.3",
+    "dotenv-cli": "^7.4.2"
   }
 }
