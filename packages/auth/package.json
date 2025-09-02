@@ -1,0 +1,19 @@
+{
+  "name": "@hono-payload/auth",
+  "version": "1.0.0",
+  "description": "Authentication using Better Auth",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "better-auth": "*"
+  },
+  "devDependencies": {
+    "typescript": "5.7.3"
+  }
+}
+
