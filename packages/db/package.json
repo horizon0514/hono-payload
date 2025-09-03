@@ -27,6 +27,7 @@
     "db:migrate": "bun run with-env drizzle-kit migrate",
     "db:push": "bun run with-env drizzle-kit push",
     "db:studio": "bun run with-env drizzle-kit studio",
+    "seed": "bun run with-env tsx src/seed.ts",
     "lint": "biome check .",
     "format": "biome format --write ."
   },
