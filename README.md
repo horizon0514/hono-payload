@@ -57,9 +57,14 @@ PAYLOAD_SECRET=your-secret-key
 # 构建所有包（会自动按依赖顺序构建）
 bun run build
 
-# 生成并推送数据库schema
-bun run db:generate
+# 可选：使用 Docker 本地启动 Postgres
+docker compose up -d postgres
+
+# 生成并推送数据库 schema
 bun run db:push
+
+# 可选：初始化种子数据（创建 admin 用户）
+bun run --filter @hono-payload/db seed
 ```
 
 ### 4. 启动开发环境
