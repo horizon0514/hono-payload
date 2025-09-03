@@ -10,6 +10,7 @@ import { usersRouter } from "./routes/users";
 import { postsRouter } from "./routes/posts";
 import { categoriesRouter } from "./routes/categories";
 import { authRouter } from "./routes/auth";
+import { withSession } from "./middleware/session";
 
 const app = new Hono();
 
@@ -36,6 +37,7 @@ app.get("/", (c) => {
 });
 
 // API Routes
+app.use("/api/*", withSession);
 app.route("/api/users", usersRouter);
 app.route("/api/posts", postsRouter);
 app.route("/api/categories", categoriesRouter);
