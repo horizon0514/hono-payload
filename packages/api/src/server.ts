@@ -11,6 +11,7 @@ import { postsRouter } from "./routes/posts";
 import { categoriesRouter } from "./routes/categories";
 import { authRouter } from "./routes/auth";
 import { withSession } from "./middleware/session";
+import { meRouter } from "./routes/me";
 
 const app = new Hono();
 
@@ -42,6 +43,7 @@ app.route("/api/users", usersRouter);
 app.route("/api/posts", postsRouter);
 app.route("/api/categories", categoriesRouter);
 app.route("/api/auth", authRouter);
+app.route("/api/me", meRouter);
 
 // 404 handler
 app.notFound((c) => {
